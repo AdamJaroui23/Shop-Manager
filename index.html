@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,31 +8,58 @@
   <title>My Shop</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
+
   <header class="site-header">
-    <a href="#top" class="brand"><span class="brand-mark" aria-hidden="true"></span>My Shop</a>
-    <a class="header-link" href="#products">Shop <span aria-hidden="true">↓</span></a>
+    <a href="#top" class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      My Shop
+    </a>
+
+    <a class="header-link" href="#products">
+      Shop <span aria-hidden="true">↓</span>
+    </a>
   </header>
 
   <main id="top">
+
     <section class="catalog" id="products" aria-labelledby="catalog-title">
+
       <div class="page-intro">
         <h1>Find your next favorite</h1>
         <p>Browse our collection of everyday products.</p>
       </div>
+
       <div class="catalog-toolbar">
+
         <h2 id="catalog-title">Products</h2>
+
         <form class="search-form" role="search">
-          <label class="visually-hidden" for="product-search">Search products</label>
+          <label class="visually-hidden" for="product-search">
+            Search products
+          </label>
+
           <svg class="search-icon" aria-hidden="true" viewBox="0 0 24 24">
             <circle cx="10.8" cy="10.8" r="6.8"></circle>
             <path d="m16 16 4.5 4.5"></path>
           </svg>
+
           <input id="product-search" name="q" type="search" placeholder="Search products" autocomplete="off" />
         </form>
+
       </div>
+
+      <p id="search-status" class="search-status"></p>
+
+      <div id="products-container"></div>
+
     </section>
+
   </main>
+
   <script src="index.js"></script>
+
 </body>
+
 </html>
