@@ -35,9 +35,26 @@
 
         <h2 id="catalog-title">Products</h2>
         
-        <select id="category-filter">
-          <option value="all">All Categories</option>
-        </select>
+        <div class="filters">
+          <label class="visually-hidden" for="category-filter">
+            Filter by category
+          </label>
+          <select id="category-filter">
+            <option value="all">All Categories</option>
+          </select>
+
+          <label class="visually-hidden" for="max-price">
+            Maximum price
+          </label>
+          <input
+            id="max-price"
+            type="number"
+            min="0"
+            step="any"
+            placeholder="Max price"
+            inputmode="decimal"
+          />
+        </div>
 
         <form class="search-form" role="search">
           <label class="visually-hidden" for="product-search">

@@ -140,6 +140,16 @@ main {
     cursor: pointer;
 }
 
+#max-price {
+    width: 140px;
+    padding: 10px 14px;
+    border: 1px solid #d5d8d1;
+    border-radius: 24px;
+    background: #fff;
+    color: #223b35;
+    font: inherit;
+}
+
 .visually-hidden {
     position: absolute;
     width: 1px;
@@ -263,6 +273,10 @@ main {
     }
 
     #category-filter {
+        width: 100%;
+    }
+
+    #max-price {
         width: 100%;
     }
 }
