@@ -4,6 +4,7 @@ let productsContainer = document.getElementById("products-container");
 let searchInput = document.getElementById("product-search");
 let categoryFilter = document.getElementById("category-filter");
 let maxPriceInput = document.getElementById("max-price");
+let inStockOnlyInput = document.getElementById("in-stock-only");
 let searchStatus = document.getElementById("search-status");
 
 function displayProducts(productsArray) {
@@ -49,7 +50,8 @@ function displayProducts(productsArray) {
 function filterProducts() {
     let searchValue = searchInput.value.toLowerCase();
     let selectedCategory = categoryFilter.value;
-    let maxPrice = 0;
+    let maxPrice = Infinity;
+    let inStockOnly = inStockOnlyInput.checked;
 
     if (maxPriceInput.value !== "") {
         maxPrice = Number(maxPriceInput.value);
@@ -63,8 +65,9 @@ function filterProducts() {
             product.categoryName === selectedCategory;
 
         let matchesMaxPrice = Number(product.price) <= maxPrice;
+        let matchesStock = !inStockOnly || Number(product.stock) > 0;
 
-        return matchesName && matchesCategory && matchesMaxPrice;
+        return matchesName && matchesCategory && matchesMaxPrice && matchesStock;
     });
 
     displayProducts(filteredProducts);
@@ -76,8 +79,9 @@ fetch("http://localhost:3000/api/products")
     .then((response) => response.json())
     .then((data) => {
         products = data;
-
         let categories = [];
+        
+    console.log(products)
 
         products.forEach((product) => {
             if (!categories.includes(product.categoryName)) {
@@ -108,3 +112,5 @@ searchInput.addEventListener("input", filterProducts);
 categoryFilter.addEventListener("change", filterProducts);
 
 maxPriceInput.addEventListener("input", filterProducts);
+
+inStockOnlyInput.addEventListener("change", filterProducts);

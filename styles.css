@@ -150,6 +150,18 @@ main {
     font: inherit;
 }
 
+.stock-filter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #223b35;
+    white-space: nowrap;
+}
+
+.stock-filter input {
+    accent-color: #264b40;
+}
+
 .visually-hidden {
     position: absolute;
     width: 1px;
