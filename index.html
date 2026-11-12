@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,45 +8,86 @@
   <title>My Shop</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
+
   <header class="site-header">
-    <a href="#top" class="brand"><span class="brand-mark" aria-hidden="true"></span>My Shop</a>
-    <a class="header-link" href="#products">Shop <span aria-hidden="true">↓</span></a>
+    <a href="#top" class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      My Shop
+    </a>
+
+    <a class="header-link" href="#products">
+      Shop <span aria-hidden="true">↓</span>
+    </a>
   </header>
 
   <main id="top">
+
     <section class="catalog" id="products" aria-labelledby="catalog-title">
+
       <div class="page-intro">
         <h1>Find your next favorite</h1>
         <p>Browse our collection of everyday products.</p>
       </div>
+
       <div class="catalog-toolbar">
+
         <h2 id="catalog-title">Products</h2>
+        
+        <div class="filters">
+          <label class="visually-hidden" for="category-filter">
+            Filter by category
+          </label>
+          <select id="category-filter">
+            <option value="all">All Categories</option>
+          </select>
+
+          <label class="visually-hidden" for="max-price">
+            Maximum price
+          </label>
+          <input
+            id="max-price"
+            type="number"
+            min="0"
+            step="any"
+            placeholder="Max price"
+            inputmode="decimal"
+          />
+
+          <label class="stock-filter" for="in-stock-only">
+            <input id="in-stock-only" type="checkbox" />
+            In stock only
+          </label>
+
+          <button id="reset-filters" type="button">Reset filters</button>
+        </div>
+
         <form class="search-form" role="search">
-          <label class="visually-hidden" for="product-search">Search products</label>
+          <label class="visually-hidden" for="product-search">
+            Search products
+          </label>
+
           <svg class="search-icon" aria-hidden="true" viewBox="0 0 24 24">
             <circle cx="10.8" cy="10.8" r="6.8"></circle>
             <path d="m16 16 4.5 4.5"></path>
           </svg>
+
           <input id="product-search" name="q" type="search" placeholder="Search products" autocomplete="off" />
         </form>
+
       </div>
-      <p class="search-status" id="search-status" role="status" aria-live="polite">1 product</p>
-      <ul class="product-grid" id="product-grid" aria-describedby="search-status">
-        <li>
-          <article class="product" aria-labelledby="product-title">
-            <div class="product-art" aria-hidden="true"></div>
-            <div class="product-info">
-              <h2 id="product-title">Everyday Mug</h2>
-              <p class="price">$24</p>
-            </div>
-          </article>
-        </li>
-      </ul>
-      <p class="empty-state" id="empty-state" hidden>No products found.</p>
+
+      <p id="search-status" class="search-status"></p>
+
+      <div id="products-container"></div>
+
     </section>
+
   </main>
-  <script src="product-search.js"></script>
+
   <script src="index.js"></script>
+
 </body>
+
 </html>
