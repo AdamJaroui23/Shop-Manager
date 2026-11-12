@@ -107,7 +107,15 @@ fetch("http://localhost:3000/api/products")
         `;
     });
 
-searchInput.addEventListener("input", filterProducts);
+searchInput.addEventListener("input", () => {
+    fetch(`http://localhost:3000/api/products?search=${encodeURIComponent(searchInput.value)}`)
+        .then((response) => response.json())
+        .then((data) => {
+            products = data;
+            filterProducts();
+        })
+        .catch((error) => console.error(error));
+});
 
 categoryFilter.addEventListener("change", filterProducts);
 
