@@ -17,7 +17,8 @@ a {
 
 a:focus-visible,
 input:focus-visible,
-select:focus-visible {
+select:focus-visible,
+button:focus-visible {
     outline: 2px solid #264b40;
     outline-offset: 3px;
 }
@@ -148,6 +149,16 @@ main {
     background: #fff;
     color: #223b35;
     font: inherit;
+}
+
+#reset-filters {
+    padding: 10px 14px;
+    border: 1px solid #c9cec7;
+    border-radius: 24px;
+    background: transparent;
+    color: #223b35;
+    font: inherit;
+    cursor: pointer;
 }
 
 .stock-filter {

@@ -6,6 +6,7 @@ let categoryFilter = document.getElementById("category-filter");
 let maxPriceInput = document.getElementById("max-price");
 let inStockOnlyInput = document.getElementById("in-stock-only");
 let searchStatus = document.getElementById("search-status");
+let resetFiltersButton = document.getElementById("reset-filters");
 
 function displayProducts(productsArray) {
     productsContainer.innerHTML = "";
@@ -122,3 +123,19 @@ categoryFilter.addEventListener("change", filterProducts);
 maxPriceInput.addEventListener("input", filterProducts);
 
 inStockOnlyInput.addEventListener("change", filterProducts);
+
+resetFiltersButton.addEventListener("click", () => {
+    searchInput.value = "";
+    categoryFilter.value = "all";
+    maxPriceInput.value = "";
+    inStockOnlyInput.checked = false;
+
+    fetch("http://localhost:3000/api/products")
+        .then((response) => response.json())
+        .then((data) => {
+            products = data;
+            displayProducts(products);
+            searchStatus.textContent = `${products.length} products found`;
+        })
+        .catch((error) => console.error(error));
+});
