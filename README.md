@@ -32,4 +32,4 @@ Adam Jaroui
 
 ## License
 
-ARR (All rights reserved unless explicitly stated)
+ARR (All rights reserved)
