@@ -7,6 +7,23 @@ let maxPriceInput = document.getElementById("max-price");
 let inStockOnlyInput = document.getElementById("in-stock-only");
 let searchStatus = document.getElementById("search-status");
 let resetFiltersButton = document.getElementById("reset-filters");
+let cartToggleButton = document.getElementById("cart-toggle");
+let cartCloseButton = document.getElementById("cart-close");
+let cartSidebar = document.getElementById("cart-sidebar");
+let cartOverlay = document.getElementById("cart-overlay");
+
+function setCartOpen(isOpen) {
+    cartSidebar.classList.toggle("active", isOpen);
+    cartOverlay.classList.toggle("active", isOpen);
+    cartSidebar.setAttribute("aria-hidden", String(!isOpen));
+    cartOverlay.setAttribute("aria-hidden", String(!isOpen));
+    cartToggleButton.setAttribute("aria-expanded", String(isOpen));
+    cartToggleButton.hidden = isOpen;
+}
+
+cartToggleButton.addEventListener("click", () => setCartOpen(true));
+cartCloseButton.addEventListener("click", () => setCartOpen(false));
+cartOverlay.addEventListener("click", () => setCartOpen(false));
 
 function displayProducts(productsArray) {
     productsContainer.innerHTML = "";
@@ -81,8 +98,8 @@ fetch("http://localhost:3000/api/products")
     .then((data) => {
         products = data;
         let categories = [];
-        
-    console.log(products)
+
+        console.log(products)
 
         products.forEach((product) => {
             if (!categories.includes(product.categoryName)) {
