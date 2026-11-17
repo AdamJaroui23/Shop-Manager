@@ -20,7 +20,28 @@
     <a class="header-link" href="#products">
       Shop <span aria-hidden="true">↓</span>
     </a>
+
+    <button class="cart-btn" id="cart-toggle" type="button" aria-expanded="false" aria-controls="cart-sidebar">
+      Cart
+    </button>
   </header>
+
+  <div class="cart-overlay" id="cart-overlay" aria-hidden="true"></div>
+
+  <aside class="cart-sidebar" id="cart-sidebar" aria-hidden="true" aria-labelledby="cart-title">
+    <div class="cart-header">
+      <h2 id="cart-title">Your cart</h2>
+      <button class="close-btn" id="cart-close" type="button" aria-label="Close cart">&times;</button>
+    </div>
+    <div class="cart-items">
+      <p>Your cart is empty.</p>
+    </div>
+    <div class="cart-footer">
+      <p>Items: <span id="cart-item-count">0</span></p>
+      <p class="cart-total"><span>Total</span><span id="cart-total">$0.00</span></p>
+      <button id="empty-cart" class="empty-cart-btn" type="button" disabled>Empty cart</button>
+    </div>
+  </aside>
 
   <main id="top">
 
@@ -34,7 +55,7 @@
       <div class="catalog-toolbar">
 
         <h2 id="catalog-title">Products</h2>
-        
+
         <div class="filters">
           <label class="visually-hidden" for="category-filter">
             Filter by category
@@ -46,14 +67,7 @@
           <label class="visually-hidden" for="max-price">
             Maximum price
           </label>
-          <input
-            id="max-price"
-            type="number"
-            min="0"
-            step="any"
-            placeholder="Max price"
-            inputmode="decimal"
-          />
+          <input id="max-price" type="number" min="0" step="any" placeholder="Max price" inputmode="decimal" />
 
           <label class="stock-filter" for="in-stock-only">
             <input id="in-stock-only" type="checkbox" />
@@ -84,9 +98,11 @@
 
     </section>
 
+
   </main>
 
   <script src="index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 
