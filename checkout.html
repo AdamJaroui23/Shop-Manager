@@ -21,7 +21,7 @@
   <main class="checkout-page">
     <section class="checkout-panel" aria-labelledby="checkout-title">
       <h1 id="checkout-title">Customer information</h1>
-      <div class="customer-fields">
+      <form id="customer-form" class="customer-fields">
         <label>
           Name
           <input type="text" name="name" autocomplete="name" required />
@@ -32,15 +32,18 @@
         </label>
         <label>
           Phone
-          <input type="tel" name="phone" autocomplete="tel" required />
+          <input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="0612345678" pattern="(?:\+212|0)[5-7][0-9]{8}" title="Use 0612345678 or +212612345678." required />
         </label>
         <label>
           Address
           <input type="text" name="address" autocomplete="street-address" required />
         </label>
-      </div>
+        <button class="checkout-btn" type="submit">Check details</button>
+      </form>
+      <p id="form-status" aria-live="polite"></p>
     </section>
   </main>
+  <script src="checkout.js"></script>
 </body>
 
 </html>
