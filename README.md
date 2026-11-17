@@ -12,6 +12,7 @@ A simple product catalog website built with HTML, CSS, and JavaScript.
 - Combine filters.
 - Reset filters.
 - Add products to a cart, change quantities without exceeding stock, remove individual or all products, and view the item count and total.
+- Enter customer name, email, phone, and address on the checkout page.
 - Handle loading and error messages.
 
 ## Technologies
