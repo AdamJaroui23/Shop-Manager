@@ -9,6 +9,8 @@ let maxPriceInput = document.getElementById("max-price");
 let inStockOnlyInput = document.getElementById("in-stock-only");
 let searchStatus = document.getElementById("search-status");
 let cartItemsContainer = document.querySelector(".cart-items");
+let cartItemCount = document.getElementById("cart-item-count");
+let cartTotal = document.getElementById("cart-total");
 
 let cartSidebar = document.getElementById("cart-sidebar");
 let cartOverlay = document.getElementById("cart-overlay");
@@ -48,6 +50,11 @@ function displayCart() {
     if (cart.length === 0) {
         cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
     }
+
+    let itemCount = cart.reduce((total, item) => total + Number(item.quantity), 0);
+    let total = cart.reduce((sum, item) => sum + Number(item.price) * Number(item.quantity), 0);
+    cartItemCount.textContent = itemCount;
+    cartTotal.textContent = `$${total.toFixed(2)}`;
 }
 
 cartItemsContainer.addEventListener("click", function(event) {
@@ -81,7 +88,7 @@ productsContainer.addEventListener("click", (event) => {
 
 cartItemsContainer.addEventListener("change", function(event) {
     let item = cart[event.target.dataset.index];
-    let quantity = event.target.value;
+    let quantity = Number(event.target.value);
 
     if (quantity < 1) {
         quantity = 1;
@@ -92,7 +99,7 @@ cartItemsContainer.addEventListener("change", function(event) {
     }
 
     item.quantity = quantity;
-    event.target.value = quantity;
+    displayCart();
 });
 
 function displayProducts(list) {
