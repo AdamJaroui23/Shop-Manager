@@ -64,12 +64,20 @@ productsContainer.addEventListener("click", (event) => {
     }
 });
 
-cartItemsContainer.addEventListener("input", (event) => {
+cartItemsContainer.addEventListener("change", function(event) {
     let item = cart[event.target.dataset.index];
-    if (!item) return;
+    let quantity = event.target.value;
 
-    item.quantity = Math.max(1, Math.min(Number(event.target.value), item.stock));
-    event.target.value = item.quantity;
+    if (quantity < 1) {
+        quantity = 1;
+    }
+
+    if (quantity > item.stock) {
+        quantity = item.stock;
+    }
+
+    item.quantity = quantity;
+    event.target.value = quantity;
 });
 
 function displayProducts(list) {
