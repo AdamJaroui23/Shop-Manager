@@ -40,6 +40,7 @@ function displayCart() {
                     <p>$${item.price}</p>
                 </div>
                 <input type="number" min="1" max="${item.stock}" value="${item.quantity}" data-index="${i}">
+                <button class="remove-from-cart-btn" type="button" data-index="${i}" aria-label="Remove ${item.name} from cart">Remove</button>
             </div>
         `;
     });
@@ -48,6 +49,14 @@ function displayCart() {
         cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
     }
 }
+
+cartItemsContainer.addEventListener("click", function(event) {
+    let button = event.target.closest(".remove-from-cart-btn");
+    if (!button) return;
+
+    cart.splice(Number(button.dataset.index), 1);
+    displayCart();
+});
 
 
 productsContainer.addEventListener("click", (event) => {

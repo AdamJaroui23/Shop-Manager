@@ -350,7 +350,7 @@ main {
 
 .cart-item {
     display: grid;
-    grid-template-columns: 56px minmax(0, 1fr) 60px;
+    grid-template-columns: 64px minmax(0, 1fr) 60px auto;
     align-items: center;
     gap: 12px;
     padding: 12px 0;
@@ -358,8 +358,8 @@ main {
 }
 
 .cart-item img {
-    width: 56px;
-    height: 56px;
+    width: 64px;
+    height: 64px;
     object-fit: contain;
 }
 
@@ -374,6 +374,14 @@ main {
 
 .cart-item input {
     width: 60px;
+}
+
+.remove-from-cart-btn {
+    padding: 6px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
 }
 
 .cart-footer {
