@@ -396,6 +396,20 @@ main {
     font-size: 18px;
 }
 
+.empty-cart-btn {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+}
+
+.empty-cart-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
 .checkout-btn {
     width: 100%;
     padding: 12px;

@@ -11,6 +11,7 @@ let searchStatus = document.getElementById("search-status");
 let cartItemsContainer = document.querySelector(".cart-items");
 let cartItemCount = document.getElementById("cart-item-count");
 let cartTotal = document.getElementById("cart-total");
+let emptyCartButton = document.getElementById("empty-cart");
 
 let cartSidebar = document.getElementById("cart-sidebar");
 let cartOverlay = document.getElementById("cart-overlay");
@@ -55,9 +56,20 @@ function displayCart() {
     let total = cart.reduce((sum, item) => sum + Number(item.price) * Number(item.quantity), 0);
     cartItemCount.textContent = itemCount;
     cartTotal.textContent = `$${total.toFixed(2)}`;
+    emptyCartButton.disabled = cart.length === 0;
 }
 
-cartItemsContainer.addEventListener("click", function(event) {
+emptyCartButton.addEventListener("click", () => {
+    cart = [];
+    Swal.fire({
+        title: "You cleared the cart",
+        icon: "success",
+        confirmButtonText: 'Continue shopping'
+    });
+    displayCart();
+});
+
+cartItemsContainer.addEventListener("click", function (event) {
     let button = event.target.closest(".remove-from-cart-btn");
     if (!button) return;
 
@@ -83,10 +95,11 @@ productsContainer.addEventListener("click", (event) => {
     if (item.quantity < item.stock) {
         item.quantity++;
         displayCart();
+        Swal.fire(`You added ${product.name} to the cart`);
     }
 });
 
-cartItemsContainer.addEventListener("change", function(event) {
+cartItemsContainer.addEventListener("change", function (event) {
     let item = cart[event.target.dataset.index];
     let quantity = Number(event.target.value);
 
