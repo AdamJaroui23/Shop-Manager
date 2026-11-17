@@ -11,6 +11,7 @@ A simple product catalog website built with HTML, CSS, and JavaScript.
 - Show only products in stock.
 - Combine filters.
 - Reset filters.
+- Add products to a cart.
 - Handle loading and error messages.
 
 ## Technologies

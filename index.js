@@ -11,6 +11,8 @@ let cartToggleButton = document.getElementById("cart-toggle");
 let cartCloseButton = document.getElementById("cart-close");
 let cartSidebar = document.getElementById("cart-sidebar");
 let cartOverlay = document.getElementById("cart-overlay");
+let cartItemsContainer = document.querySelector(".cart-items");
+let cart = [];
 
 function setCartOpen(isOpen) {
     cartSidebar.classList.toggle("active", isOpen);
@@ -25,16 +27,43 @@ cartToggleButton.addEventListener("click", () => setCartOpen(true));
 cartCloseButton.addEventListener("click", () => setCartOpen(false));
 cartOverlay.addEventListener("click", () => setCartOpen(false));
 
+function displayCart() {
+    cartToggleButton.textContent = `Cart (${cart.length})`;
+    cartItemsContainer.innerHTML = "";
+
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+        return;
+    }
+
+    for (let i = 0; i < cart.length; i++) {
+        cartItemsContainer.innerHTML += `<p>${cart[i].name} - $${cart[i].price}</p>`;
+    }
+}
+
+productsContainer.addEventListener("click", (event) => {
+    let button = event.target.closest(".add-to-cart-btn");
+    if (!button) {
+        return;
+    }
+
+    let product = products.find((item) => String(item.id) === button.dataset.productId);
+    if (product) {
+        cart.push(product);
+        displayCart();
+    }
+});
+
+displayCart();
+
 function displayProducts(productsArray) {
     productsContainer.innerHTML = "";
-
     if (productsArray.length === 0) {
         productsContainer.innerHTML = `
             <p class="empty-state">No products found.</p>
         `;
         return;
     }
-
     productsArray.forEach((product) => {
         productsContainer.innerHTML += `
             <div class="product">
@@ -42,23 +71,22 @@ function displayProducts(productsArray) {
                     <img
                         src="http://localhost:3000${product.image}"
                         alt="${product.name}"
-                    >
+                        >
                 </div>
-
                 <div class="product-info">
                     <div class="product-copy">
                         <p class="product-category">
                             ${product.categoryName}
                         </p>
-
                         <h3>${product.name}</h3>
-
                         <p class="product-description">
                             ${product.description}
                         </p>
                     </div>
-
-                    <p class="price">$${product.price}</p>
+                    <div class="product-purchase">
+                        <p class="price">$${product.price}</p>
+                        <button class="add-to-cart-btn" type="button" data-product-id="${product.id}">Add to cart</button>
+                    </div>
                 </div>
             </div>
         `;
@@ -70,26 +98,19 @@ function filterProducts() {
     let selectedCategory = categoryFilter.value;
     let maxPrice = Infinity;
     let inStockOnly = inStockOnlyInput.checked;
-
     if (maxPriceInput.value !== "") {
         maxPrice = Number(maxPriceInput.value);
     }
-
     let filteredProducts = products.filter((product) => {
         let matchesName = product.name.toLowerCase().includes(searchValue);
-
         let matchesCategory =
             selectedCategory === "all" ||
             product.categoryName === selectedCategory;
-
         let matchesMaxPrice = Number(product.price) <= maxPrice;
         let matchesStock = !inStockOnly || Number(product.stock) > 0;
-
         return matchesName && matchesCategory && matchesMaxPrice && matchesStock;
     });
-
     displayProducts(filteredProducts);
-
     searchStatus.textContent = `${filteredProducts.length} products found`;
 }
 
@@ -98,28 +119,22 @@ fetch("http://localhost:3000/api/products")
     .then((data) => {
         products = data;
         let categories = [];
-
         console.log(products)
-
         products.forEach((product) => {
             if (!categories.includes(product.categoryName)) {
                 categories.push(product.categoryName);
             }
         });
-
         categories.forEach((category) => {
             categoryFilter.innerHTML += `
                 <option value="${category}">${category}</option>
             `;
         });
-
         displayProducts(products);
-
         searchStatus.textContent = `${products.length} products found`;
     })
     .catch((error) => {
         console.error(error);
-
         productsContainer.innerHTML = `
             <p class="empty-state">Could not load products.</p>
         `;
