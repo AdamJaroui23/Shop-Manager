@@ -349,11 +349,27 @@ main {
 }
 
 .cart-item {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr) 60px;
     align-items: center;
+    gap: 12px;
     padding: 12px 0;
     border-bottom: 1px solid #eee;
+}
+
+.cart-item img {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+}
+
+.cart-item-info h3 {
+    margin: 0;
+    font-size: 15px;
+}
+
+.cart-item-info p {
+    margin: 4px 0 0;
 }
 
 .cart-item input {

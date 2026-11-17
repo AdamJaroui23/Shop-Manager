@@ -27,13 +27,18 @@ cartToggleButton.addEventListener("click", () => setCartOpen(true));
 document.getElementById("cart-close").addEventListener("click", () => setCartOpen(false));
 cartOverlay.addEventListener("click", () => setCartOpen(false));
 
+
 function displayCart() {
     cartItemsContainer.innerHTML = "";
 
     cart.forEach((item, i) => {
         cartItemsContainer.innerHTML += `
             <div class="cart-item">
-                <span>${item.name} - $${item.price}</span>
+                <img src="http://localhost:3000${item.image}" alt="${item.name}">
+                <div class="cart-item-info">
+                    <h3>${item.name}</h3>
+                    <p>$${item.price}</p>
+                </div>
                 <input type="number" min="1" max="${item.stock}" value="${item.quantity}" data-index="${i}">
             </div>
         `;
@@ -43,6 +48,7 @@ function displayCart() {
         cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
     }
 }
+
 
 productsContainer.addEventListener("click", (event) => {
     let button = event.target.closest(".add-to-cart-btn");
