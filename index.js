@@ -1,6 +1,6 @@
 
 let products = [];
-let cart = [];
+let cart = JSON.parse(localStorage.getItem("cart") || "[]");
 
 let productsContainer = document.getElementById("products-container");
 let searchInput = document.getElementById("product-search");
@@ -32,6 +32,7 @@ cartOverlay.addEventListener("click", () => setCartOpen(false));
 
 
 function displayCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
     cartItemsContainer.innerHTML = "";
 
     cart.forEach((item, i) => {

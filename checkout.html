@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Enter your customer information." />
+  <title>Customer Information - My Shop</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <a href="index.html" class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      My Shop
+    </a>
+    <a class="header-link" href="index.html#products">Back to shop</a>
+  </header>
+
+  <main class="checkout-page">
+    <section class="checkout-panel" aria-labelledby="checkout-title">
+      <h1 id="checkout-title">Customer information</h1>
+      <form id="customer-form" class="customer-fields">
+        <label>
+          Name
+          <input type="text" name="name" autocomplete="name" required />
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" autocomplete="email" required />
+        </label>
+        <label>
+          Phone
+          <input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="0612345678" pattern="(?:\+212|0)[5-7][0-9]{8}" title="Use 0612345678 or +212612345678." required />
+        </label>
+        <label>
+          Address
+          <input type="text" name="address" autocomplete="street-address" required />
+        </label>
+        <label>
+          City
+          <input type="text" name="city" autocomplete="address-level2" required />
+        </label>
+        <button class="checkout-btn" type="submit">Check details</button>
+      </form>
+      <p id="form-status" aria-live="polite"></p>
+    </section>
+  </main>
+  <script src="checkout.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>

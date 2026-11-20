@@ -411,6 +411,7 @@ main {
 }
 
 .checkout-btn {
+    display: block;
     width: 100%;
     padding: 12px;
     background: #333;
@@ -419,6 +420,34 @@ main {
     border-radius: 6px;
     font-size: 16px;
     cursor: pointer;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.checkout-page {
+    max-width: 640px;
+}
+
+.checkout-panel h1 {
+    margin-top: 0;
+}
+
+.customer-fields {
+    display: grid;
+    gap: 16px;
+}
+
+.customer-fields label {
+    display: grid;
+    gap: 6px;
+}
+
+.customer-fields input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d5d8d1;
+    border-radius: 6px;
+    font: inherit;
 }
 
 @media (max-width: 768px) {
