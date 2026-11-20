@@ -38,12 +38,17 @@
           Address
           <input type="text" name="address" autocomplete="street-address" required />
         </label>
+        <label>
+          City
+          <input type="text" name="city" autocomplete="address-level2" required />
+        </label>
         <button class="checkout-btn" type="submit">Check details</button>
       </form>
       <p id="form-status" aria-live="polite"></p>
     </section>
   </main>
   <script src="checkout.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
